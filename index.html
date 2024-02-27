@@ -12,14 +12,14 @@
 
 
   <div id="app">
-    <header>
-      <h1>My Store</h1>
+    <header>  
+      <h1 id="title">My Store</h1>
       <nav>
         <ul>
-          <li><a href="#" id="electronics">Electronics</a></li>
-          <li><a href="#" id="clothing">Clothing</a></li>
-          <li><a href="#" id="groceries">Groceries</a></li>
-          <li><a href="#" id="bestSeller">Best Seller</a></li>
+          <li><a href="elec" id="electronics">Electronics</a></li>
+          <li><a href="cloth" id="clothing">Clothing</a></li>
+          <li><a href="groc" id="groceries">Groceries</a></li>
+          <li><a href="bestSell" id="bestSeller">Best Seller</a></li>
         </ul>
       </nav>
     </header>
@@ -29,15 +29,30 @@
         import { renderProducts, getByCategory, getByRating } from './src/data-controller.ts';
         renderProducts(products);
 
-        // Bind click events using .addEventListener to the navigation links. Upon clicking:
-
-        // - "Electronics" should display all products categorized as "Electronics."
-        // - "Clothing" should display all products categorized as "Clothing."
-        // - "Groceries" should display all products categorized as "Groceries."
-        // - "Best Seller" should display all products with a rating greater than 4.5.
-
+        //My code
+        document.getElementById("app").addEventListener("click", clickFunction);
+        function clickFunction(event) {
+          event.preventDefault();
+            switch (event.target.id){
+              case "electronics":
+                getByCategory("Electronics");
+                break;
+              case "clothing":
+                getByCategory("Clothing");
+                break;
+              case "groceries":
+                getByCategory("Groceries");
+                break;
+              case "bestSeller":
+                getByRating(4.5);
+                break;
+              case "title":
+                renderProducts(products);
+                break;
+            }
+        }
         
-        // your code
+
       </script>
     </main>
     <footer>

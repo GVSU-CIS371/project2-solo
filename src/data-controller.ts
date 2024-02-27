@@ -9,16 +9,26 @@ function generateProductHTML(product: Product): string {
             </div>`;
 }
 
+
 function renderProducts(prods: Product[]): void {
-    // your code
+    const prodHMTL = prods.flatMap(generateProductHTML);
+    const mainHTML = document.getElementById("main-container");
+    console.log(prodHMTL.length);
+
+    mainHTML.innerHTML = "";
+    for (let p of prodHMTL){
+        mainHTML.innerHTML += p;
+    }
 }
 
 function getByCategory(category: string): void {
-    // your code
+    const filteredProducts: Product[] = products.filter((a:Product) => {return a.category.includes(category)})
+    renderProducts(filteredProducts);
 }
 
 function getByRating(minRating: number): void {
-    // your code
+    const ratedProducts: Product[] = products.filter((a:Product) => {return a.rating > minRating})
+    renderProducts(ratedProducts);
 }
 
 export { renderProducts, getByCategory, getByRating };
